@@ -2,7 +2,9 @@
   "name": "wcif-scripts",
   "version": "1.0.0",
   "description": "Scripts operating on the WCIF.",
-  "scripts": {},
+  "bin": {
+    "generate-tasks-csv": "./src/generate-tasks-csv.js"
+  },
   "author": "Jonatan Kłosko",
   "license": "MIT",
   "repository": {
