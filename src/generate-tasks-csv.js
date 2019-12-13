@@ -20,7 +20,7 @@ const tasksCsvString = async (competitionId) => {
   const roundActivities = flatMap(wcif.events, event =>
     flatMap(rooms, room =>
       room.activities.filter(({ activityCode }) =>
-        activityCode.startsWith(event.id)
+        activityCode.startsWith(`${event.id}-`)
       )
     )
   );
