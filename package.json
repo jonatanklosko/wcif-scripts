@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Scripts operating on the WCIF.",
   "bin": {
-    "generate-tasks-csv": "./src/generate-tasks-csv.js"
+    "generate-tasks-csv": "./src/generate-tasks-csv.js",
+    "list-no-shows": "./src/list-no-shows.js"
   },
   "author": "Jonatan Kłosko",
   "license": "MIT",
