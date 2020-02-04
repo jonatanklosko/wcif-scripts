@@ -27,6 +27,8 @@ if (!competitionId) {
 
 getNoShows(competitionId)
   .then(noShows => console.log(
-    noShows.map(person => `${person.name} | ${person.wcaId || 'No WCA ID'}`).join('\n')
+    noShows.map(person =>
+      `${person.name} | ${person.wcaId || 'No WCA ID'} | Events: ${person.registration.eventIds.length}`
+    ).join('\n')
   ))
   .catch(error => console.error(`Something went wrong: ${error}`));
