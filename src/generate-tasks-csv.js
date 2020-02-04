@@ -2,8 +2,6 @@
 
 const fetch = require('node-fetch');
 
-const flatMap = (arr, fn) => arr.reduce((xs, x) => xs.concat(fn(x)), []);
-
 const codeByAssignmentCode = {
   'competitor': '1',
   'staff-judge': 'J',
@@ -16,18 +14,17 @@ const tasksCsvString = async (competitionId) => {
     `https://worldcubeassociation.org/api/v0/competitions/${competitionId}/wcif/public`
   );
   const wcif = await response.json();
-  const rooms = flatMap(wcif.schedule.venues, venue => venue.rooms);
-  const roundActivities = flatMap(wcif.events, event =>
-    flatMap(rooms, room =>
+  const rooms = wcif.schedule.venues.flatMap(venue => venue.rooms);
+  const roundActivities = wcif.events.flatMap(event =>
+    rooms.flatMap(room =>
       room.activities.filter(({ activityCode }) =>
         activityCode.startsWith(`${event.id}-`)
       )
     )
   );
-  const groupActivities = flatMap(
-    roundActivities.filter(round => round.childActivities.length > 0),
-    roundActivity => roundActivity.childActivities
-  );
+  const groupActivities = roundActivities
+    .filter(round => round.childActivities.length > 0)
+    .flatMap(roundActivity => roundActivity.childActivities);
   const header = [
     'ID',
     'Name',

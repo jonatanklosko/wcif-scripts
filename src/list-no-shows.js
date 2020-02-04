@@ -2,8 +2,6 @@
 
 const fetch = require('node-fetch');
 
-const flatMap = (arr, fn) => arr.reduce((xs, x) => xs.concat(fn(x)), []);
-
 const getNoShows = async (competitionId) => {
   const response = await fetch(
     `https://worldcubeassociation.org/api/v0/competitions/${competitionId}/wcif/public`
